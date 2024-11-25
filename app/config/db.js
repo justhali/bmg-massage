@@ -1,9 +1,4 @@
-const { Sequelize } = require('sequelize');
-
-const sequelize = new Sequelize('bmg_massage', 'bmg_user', 'strong_password', {
-    host: 'localhost',
-    dialect: 'mariadb'
-});
+const sequelize = require('./sequelize');
 
 const connectDB = async () => {
     try {
@@ -13,4 +8,4 @@ const connectDB = async () => {
     }
 }
 
-module.exports = { sequelize, connectDB };
+module.exports = connectDB;

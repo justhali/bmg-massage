@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
-const { sequelize, connectDB } = require('./config/db');
+const connectDB = require('./config/db');
+const syncDatabase = require('./config/syncDatabase');
 const app = express();
 
 const port = process.env.PORT || 3000;
@@ -12,7 +13,9 @@ app.use((err, req, res, next) => {
 
 app.use(express.json());
 
+// DATABASE
 connectDB();
+syncDatabase();
 
 app.listen(port, () => {
     console.log(`Server is running on port http://localhost:${port}`)

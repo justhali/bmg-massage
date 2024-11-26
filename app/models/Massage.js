@@ -27,3 +27,4 @@ const Massage = sequelize.define(
 });
 
 module.exports = Massage;
+

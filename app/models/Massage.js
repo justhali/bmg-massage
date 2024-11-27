@@ -23,8 +23,8 @@ const Massage = sequelize.define(
         type: DataTypes.STRING,
         allowNull: true,
     },
-
 });
+
 
 module.exports = Massage;
 

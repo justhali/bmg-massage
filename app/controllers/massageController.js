@@ -1,3 +1,4 @@
+const Booking = require('../models/Booking');
 const Massage = require('../models/Massage');
 
 exports.createMassage = async (req, res) => {
@@ -44,3 +45,13 @@ exports.deleteMassage = async (req, res) => {
         res.status(500).json({ message: 'Error while deleting the massage', error });
     }
 }
+
+// exports.getMassagesWithBooking = async (req, res) => {
+//     try {
+//         const massages = await Massage.findAll({ include: Booking });
+//         console.log(massages)
+//         res.status(200).json(massages)
+//     } catch (error) {
+//         res.status(500).json({ message: 'Error while fetching massages', error });
+//     }
+// }

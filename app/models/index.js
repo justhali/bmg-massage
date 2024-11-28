@@ -1,6 +1,6 @@
 const Massage = require('./Massage');
 const Booking = require('./Booking');
-
+const TemporaryUser = require('./TemporaryUser');
 // Massage.hasMany(Booking);
 // Booking.belongsTo(Massage, {
 //     foreignKey: 'massageId',
@@ -10,4 +10,7 @@ const Booking = require('./Booking');
 Massage.hasMany(Booking, { foreignKey: 'massageId', as: 'bookings' });
 Booking.belongsTo(Massage, { foreignKey: 'massageId', as: 'massage' });
 
-module.exports = { Booking, Massage };
+Booking.belongsTo(TemporaryUser, { foreignKey: 'temporaryUserId' });
+TemporaryUser.hasMany(Booking, { foreignKey: 'temporaryUserId' });
+
+module.exports = { Booking, Massage, TemporaryUser };

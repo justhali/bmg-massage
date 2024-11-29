@@ -1,3 +1,6 @@
+const { Op } = require('sequelize');
+const moment = require("moment");
+moment.locale('fr');
 const sequelize = require('../config/sequelize');
 const { Booking, Massage, TemporaryUser } = require('../models/');
 
@@ -17,6 +20,19 @@ exports.createBooking = async (req, res) => {
             return res.status(400).json({ message: "Massage not found" });
         }
 
+        const existingBooking = await Booking.findOne({
+            where: {
+                massageId,
+                bookingDate,
+                status: {
+                    [Op.ne]: 'annulée'
+                },
+            }
+        });
+        if (existingBooking) {
+            return res.status(400).json({ message: 'This date is already booked' });
+        }
+
         const [temporaryUser] = await TemporaryUser.findOrCreate({
             where: {
                 email: email || null,
@@ -24,7 +40,6 @@ exports.createBooking = async (req, res) => {
             },
             transaction,
         });
-
 
         const booking = await Booking.create({
             massageId,
@@ -34,7 +49,13 @@ exports.createBooking = async (req, res) => {
         }, { transaction });
 
         await transaction.commit();
-        res.status(201).json(booking);
+
+        const formattedBooking = {
+            ...booking.toJSON(),
+            bookingDate: moment(booking.bookingDate).format('DD/MM/YYYY'),
+        }
+
+        res.status(201).json(formattedBooking);
     } catch (error) {
         await transaction.rollback();
         res.status(500).json({ message: 'Error while creating a new booking', error });

@@ -1,13 +1,10 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const Massage = require('./Massage')
-const sequelize = require('../config/sequelize')
+const sequelize = require('../config/sequelize');
+const TemporaryUser = require('./TemporaryUser');
+const Massage = require('./Massage');
 
 const Booking = sequelize.define(
     'Booking', {
-    userId: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
     massageId: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -31,7 +28,6 @@ const Booking = sequelize.define(
             isIn: [['confirmée', 'en attente', 'annulée']],
         },
     },
-
 });
 
 module.exports = Booking;

@@ -1,21 +1,45 @@
-const { Booking, Massage } = require('../models/');
+const sequelize = require('../config/sequelize');
+const { Booking, Massage, TemporaryUser } = require('../models/');
 
 exports.createBooking = async (req, res) => {
+    const { massageId, bookingDate, status, email, phoneNumber } = req.body;
 
-    const { massageId, bookingDate, status } = req.body;
-
-    const massage = await Massage.findByPk(massageId)
-
-    if (!massage) {
-        return res.status(400).json({ message: "Massage not found" });
+    if (!email && !phoneNumber) {
+        return res.status(400).json({ message: "Email or phone number is required" });
     }
+
+    const transaction = await sequelize.transaction();
+
     try {
-        const booking = await Booking.create({ massageId, bookingDate, status });
-        res.status(201).json(booking)
+        const massage = await Massage.findByPk(massageId);
+        if (!massage) {
+            await transaction.rollback();
+            return res.status(400).json({ message: "Massage not found" });
+        }
+
+        const [temporaryUser] = await TemporaryUser.findOrCreate({
+            where: {
+                email: email || null,
+                phoneNumber: phoneNumber || null,
+            },
+            transaction,
+        });
+
+
+        const booking = await Booking.create({
+            massageId,
+            bookingDate,
+            status,
+            temporaryUserId: temporaryUser.id,
+        }, { transaction });
+
+        await transaction.commit();
+        res.status(201).json(booking);
     } catch (error) {
+        await transaction.rollback();
         res.status(500).json({ message: 'Error while creating a new booking', error });
     }
-}
+};
 
 exports.getBookings = async (req, res) => {
     try {

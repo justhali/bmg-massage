@@ -5,14 +5,6 @@ const Massage = require('./Massage');
 
 const Booking = sequelize.define(
     'Booking', {
-    massageId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: Massage,
-            key: 'id',
-        },
-    },
     bookingDate: {
         type: DataTypes.DATEONLY,
         allowNull: false,

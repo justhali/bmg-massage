@@ -12,12 +12,6 @@ const TemporaryUser = sequelize.define('TemporaryUser', {
     phoneNumber: {
         type: DataTypes.STRING,
         allowNull: true,
-    },
-    identifier: {
-        type: DataTypes.UUID,
-        defaultValue: Sequelize.UUIDV4,
-        allowNull: false,
-        unique: true,
     }
 });
 

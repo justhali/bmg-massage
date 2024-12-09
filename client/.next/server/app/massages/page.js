@@ -56,6 +56,72 @@ module.exports = require("next/dist/server/app-render/work-unit-async-storage.ex
 
 /***/ }),
 
+/***/ "assert":
+/*!*************************!*\
+  !*** external "assert" ***!
+  \*************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("assert");
+
+/***/ }),
+
+/***/ "events":
+/*!*************************!*\
+  !*** external "events" ***!
+  \*************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("events");
+
+/***/ }),
+
+/***/ "fs":
+/*!*********************!*\
+  !*** external "fs" ***!
+  \*********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ "http":
+/*!***********************!*\
+  !*** external "http" ***!
+  \***********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("http");
+
+/***/ }),
+
+/***/ "https":
+/*!************************!*\
+  !*** external "https" ***!
+  \************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("https");
+
+/***/ }),
+
+/***/ "os":
+/*!*********************!*\
+  !*** external "os" ***!
+  \*********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("os");
+
+/***/ }),
+
 /***/ "path":
 /*!***********************!*\
   !*** external "path" ***!
@@ -64,6 +130,61 @@ module.exports = require("next/dist/server/app-render/work-unit-async-storage.ex
 
 "use strict";
 module.exports = require("path");
+
+/***/ }),
+
+/***/ "stream":
+/*!*************************!*\
+  !*** external "stream" ***!
+  \*************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("stream");
+
+/***/ }),
+
+/***/ "tty":
+/*!**********************!*\
+  !*** external "tty" ***!
+  \**********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("tty");
+
+/***/ }),
+
+/***/ "url":
+/*!**********************!*\
+  !*** external "url" ***!
+  \**********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("url");
+
+/***/ }),
+
+/***/ "util":
+/*!***********************!*\
+  !*** external "util" ***!
+  \***********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("util");
+
+/***/ }),
+
+/***/ "zlib":
+/*!***********************!*\
+  !*** external "zlib" ***!
+  \***********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("zlib");
 
 /***/ }),
 
@@ -136,7 +257,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Page)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"(rsc)/./node_modules/next/dist/server/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.js\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n\nfunction Page() {\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"h1\", {\n            children: \"Massages\"\n        }, void 0, false, {\n            fileName: \"C:\\\\Users\\\\Moi\\\\Home\\\\FREELANCE\\\\BMG\\\\bmg-massage\\\\client\\\\src\\\\app\\\\massages\\\\page.tsx\",\n            lineNumber: 4,\n            columnNumber: 13\n        }, this)\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\Moi\\\\Home\\\\FREELANCE\\\\BMG\\\\bmg-massage\\\\client\\\\src\\\\app\\\\massages\\\\page.tsx\",\n        lineNumber: 3,\n        columnNumber: 9\n    }, this);\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHJzYykvLi9zcmMvYXBwL21hc3NhZ2VzL3BhZ2UudHN4IiwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFBZSxTQUFTQTtJQUNwQixxQkFDSSw4REFBQ0M7a0JBQ0csNEVBQUNDO3NCQUFHOzs7Ozs7Ozs7OztBQUdoQiIsInNvdXJjZXMiOlsiQzpcXFVzZXJzXFxNb2lcXEhvbWVcXEZSRUVMQU5DRVxcQk1HXFxibWctbWFzc2FnZVxcY2xpZW50XFxzcmNcXGFwcFxcbWFzc2FnZXNcXHBhZ2UudHN4Il0sInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIFBhZ2UoKSB7XHJcbiAgICByZXR1cm4gKFxyXG4gICAgICAgIDxkaXY+XHJcbiAgICAgICAgICAgIDxoMT5NYXNzYWdlczwvaDE+XHJcbiAgICAgICAgPC9kaXY+XHJcbiAgICApO1xyXG59Il0sIm5hbWVzIjpbIlBhZ2UiLCJkaXYiLCJoMSJdLCJpZ25vcmVMaXN0IjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(rsc)/./src/app/massages/page.tsx\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Page)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"(rsc)/./node_modules/next/dist/server/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.js\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var lib_api_massages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lib/api/massages */ \"(rsc)/./src/lib/api/massages.ts\");\n\n\nasync function Page() {\n    const massagesList = await (0,lib_api_massages__WEBPACK_IMPORTED_MODULE_1__.getMassages)();\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        children: [\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"h1\", {\n                children: \"Massages\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\Moi\\\\Home\\\\FREELANCE\\\\BMG\\\\bmg-massage\\\\client\\\\src\\\\app\\\\massages\\\\page.tsx\",\n                lineNumber: 8,\n                columnNumber: 13\n            }, this),\n            massagesList.map((massage)=>/*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"p\", {\n                    children: massage.name\n                }, void 0, false, {\n                    fileName: \"C:\\\\Users\\\\Moi\\\\Home\\\\FREELANCE\\\\BMG\\\\bmg-massage\\\\client\\\\src\\\\app\\\\massages\\\\page.tsx\",\n                    lineNumber: 11,\n                    columnNumber: 21\n                }, this))\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\Moi\\\\Home\\\\FREELANCE\\\\BMG\\\\bmg-massage\\\\client\\\\src\\\\app\\\\massages\\\\page.tsx\",\n        lineNumber: 7,\n        columnNumber: 9\n    }, this);\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHJzYykvLi9zcmMvYXBwL21hc3NhZ2VzL3BhZ2UudHN4IiwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQStDO0FBRWhDLGVBQWVDO0lBQzFCLE1BQU1DLGVBQWUsTUFBTUYsNkRBQVdBO0lBRXRDLHFCQUNJLDhEQUFDRzs7MEJBQ0csOERBQUNDOzBCQUFHOzs7Ozs7WUFFQUYsYUFBYUcsR0FBRyxDQUFDQyxDQUFBQSx3QkFDYiw4REFBQ0M7OEJBQUdELFFBQVFFLElBQUk7Ozs7Ozs7Ozs7OztBQUtwQyIsInNvdXJjZXMiOlsiQzpcXFVzZXJzXFxNb2lcXEhvbWVcXEZSRUVMQU5DRVxcQk1HXFxibWctbWFzc2FnZVxcY2xpZW50XFxzcmNcXGFwcFxcbWFzc2FnZXNcXHBhZ2UudHN4Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGdldE1hc3NhZ2VzIH0gZnJvbSBcImxpYi9hcGkvbWFzc2FnZXNcIjtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IGFzeW5jIGZ1bmN0aW9uIFBhZ2UoKSB7XHJcbiAgICBjb25zdCBtYXNzYWdlc0xpc3QgPSBhd2FpdCBnZXRNYXNzYWdlcygpO1xyXG5cclxuICAgIHJldHVybiAoXHJcbiAgICAgICAgPGRpdj5cclxuICAgICAgICAgICAgPGgxPk1hc3NhZ2VzPC9oMT5cclxuICAgICAgICAgICAge1xyXG4gICAgICAgICAgICAgICAgbWFzc2FnZXNMaXN0Lm1hcChtYXNzYWdlID0+IChcclxuICAgICAgICAgICAgICAgICAgICA8cD57bWFzc2FnZS5uYW1lfTwvcD5cclxuICAgICAgICAgICAgICAgICkpXHJcbiAgICAgICAgICAgIH1cclxuICAgICAgICA8L2Rpdj5cclxuICAgICk7XHJcbn0iXSwibmFtZXMiOlsiZ2V0TWFzc2FnZXMiLCJQYWdlIiwibWFzc2FnZXNMaXN0IiwiZGl2IiwiaDEiLCJtYXAiLCJtYXNzYWdlIiwicCIsIm5hbWUiXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(rsc)/./src/app/massages/page.tsx\n");
+
+/***/ }),
+
+/***/ "(rsc)/./src/lib/api/massages.ts":
+/*!*********************************!*\
+  !*** ./src/lib/api/massages.ts ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   getMassageById: () => (/* binding */ getMassageById),\n/* harmony export */   getMassages: () => (/* binding */ getMassages)\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"(rsc)/./node_modules/axios/lib/axios.js\");\n\nconst API_URL = \"http://localhost:3001\";\nconst getMassages = async ()=>{\n    try {\n        const response = await axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].get(`${API_URL}/massages`);\n        return response.data;\n    } catch (error) {\n        console.error('Erreur de récupération des massages', error);\n    }\n};\nconst getMassageById = async (id)=>{\n    try {\n        const response = await axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].get(`${API_URL}/massages/${id}`);\n        console.log(\"Récupération d'un massage par son id:\", response.data);\n        return response.data;\n    } catch (error) {\n        console.error(`Erreur de récupération du massage ${id}`, error);\n        return null;\n    }\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHJzYykvLi9zcmMvbGliL2FwaS9tYXNzYWdlcy50cyIsIm1hcHBpbmdzIjoiOzs7Ozs7QUFBMEI7QUFHMUIsTUFBTUMsVUFBVUMsdUJBQW1DO0FBRTVDLE1BQU1HLGNBQWM7SUFDdkIsSUFBSTtRQUNBLE1BQU1DLFdBQVcsTUFBTU4sNkNBQUtBLENBQUNPLEdBQUcsQ0FBQyxHQUFHTixRQUFRLFNBQVMsQ0FBQztRQUV0RCxPQUFPSyxTQUFTRSxJQUFJO0lBQ3hCLEVBQUUsT0FBT0MsT0FBTztRQUNaQyxRQUFRRCxLQUFLLENBQUMsdUNBQXVDQTtJQUN6RDtBQUNKLEVBQUM7QUFFTSxNQUFNRSxpQkFBaUIsT0FBT0M7SUFDakMsSUFBSTtRQUNBLE1BQU1OLFdBQVcsTUFBTU4sNkNBQUtBLENBQUNPLEdBQUcsQ0FBQyxHQUFHTixRQUFRLFVBQVUsRUFBRVcsSUFBSTtRQUM1REYsUUFBUUcsR0FBRyxDQUFDLHlDQUF5Q1AsU0FBU0UsSUFBSTtRQUNsRSxPQUFPRixTQUFTRSxJQUFJO0lBQ3hCLEVBQUUsT0FBT0MsT0FBTztRQUNaQyxRQUFRRCxLQUFLLENBQUMsQ0FBQyxrQ0FBa0MsRUFBRUcsSUFBSSxFQUFFSDtRQUN6RCxPQUFPO0lBQ1g7QUFDSixFQUFDIiwic291cmNlcyI6WyJDOlxcVXNlcnNcXE1vaVxcSG9tZVxcRlJFRUxBTkNFXFxCTUdcXGJtZy1tYXNzYWdlXFxjbGllbnRcXHNyY1xcbGliXFxhcGlcXG1hc3NhZ2VzLnRzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBheGlvcyBmcm9tIFwiYXhpb3NcIjtcclxuaW1wb3J0IHsgTWFzc2FnZSB9IGZyb20gXCIuLi90eXBlcy9pbmRleFwiO1xyXG5cclxuY29uc3QgQVBJX1VSTCA9IHByb2Nlc3MuZW52Lk5FWFRfUFVCTElDX0JBQ0tFTkRfVVJMO1xyXG5cclxuZXhwb3J0IGNvbnN0IGdldE1hc3NhZ2VzID0gYXN5bmMgKCk6IFByb21pc2U8TWFzc2FnZVtdPiA9PiB7XHJcbiAgICB0cnkge1xyXG4gICAgICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgYXhpb3MuZ2V0KGAke0FQSV9VUkx9L21hc3NhZ2VzYCk7XHJcblxyXG4gICAgICAgIHJldHVybiByZXNwb25zZS5kYXRhO1xyXG4gICAgfSBjYXRjaCAoZXJyb3IpIHtcclxuICAgICAgICBjb25zb2xlLmVycm9yKCdFcnJldXIgZGUgcsOpY3Vww6lyYXRpb24gZGVzIG1hc3NhZ2VzJywgZXJyb3IpO1xyXG4gICAgfVxyXG59XHJcblxyXG5leHBvcnQgY29uc3QgZ2V0TWFzc2FnZUJ5SWQgPSBhc3luYyAoaWQ6IG51bWJlcik6IFByb21pc2U8TWFzc2FnZSB8IG51bGw+ID0+IHtcclxuICAgIHRyeSB7XHJcbiAgICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBheGlvcy5nZXQoYCR7QVBJX1VSTH0vbWFzc2FnZXMvJHtpZH1gKTtcclxuICAgICAgICBjb25zb2xlLmxvZyhcIlLDqWN1cMOpcmF0aW9uIGQndW4gbWFzc2FnZSBwYXIgc29uIGlkOlwiLCByZXNwb25zZS5kYXRhKTtcclxuICAgICAgICByZXR1cm4gcmVzcG9uc2UuZGF0YTtcclxuICAgIH0gY2F0Y2ggKGVycm9yKSB7XHJcbiAgICAgICAgY29uc29sZS5lcnJvcihgRXJyZXVyIGRlIHLDqWN1cMOpcmF0aW9uIGR1IG1hc3NhZ2UgJHtpZH1gLCBlcnJvcik7XHJcbiAgICAgICAgcmV0dXJuIG51bGw7XHJcbiAgICB9XHJcbn1cclxuXHJcbiJdLCJuYW1lcyI6WyJheGlvcyIsIkFQSV9VUkwiLCJwcm9jZXNzIiwiZW52IiwiTkVYVF9QVUJMSUNfQkFDS0VORF9VUkwiLCJnZXRNYXNzYWdlcyIsInJlc3BvbnNlIiwiZ2V0IiwiZGF0YSIsImVycm9yIiwiY29uc29sZSIsImdldE1hc3NhZ2VCeUlkIiwiaWQiLCJsb2ciXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(rsc)/./src/lib/api/massages.ts\n");
 
 /***/ })
 
@@ -147,7 +279,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/next","vendor-chunks/@swc"], () => (__webpack_exec__("(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fmassages%2Fpage&page=%2Fmassages%2Fpage&appPaths=%2Fmassages%2Fpage&pagePath=private-next-app-dir%2Fmassages%2Fpage.tsx&appDir=C%3A%5CUsers%5CMoi%5CHome%5CFREELANCE%5CBMG%5Cbmg-massage%5Cclient%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5CMoi%5CHome%5CFREELANCE%5CBMG%5Cbmg-massage%5Cclient&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!")));
+var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/next","vendor-chunks/mime-db","vendor-chunks/axios","vendor-chunks/follow-redirects","vendor-chunks/debug","vendor-chunks/form-data","vendor-chunks/asynckit","vendor-chunks/combined-stream","vendor-chunks/mime-types","vendor-chunks/proxy-from-env","vendor-chunks/ms","vendor-chunks/supports-color","vendor-chunks/delayed-stream","vendor-chunks/@swc","vendor-chunks/has-flag"], () => (__webpack_exec__("(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fmassages%2Fpage&page=%2Fmassages%2Fpage&appPaths=%2Fmassages%2Fpage&pagePath=private-next-app-dir%2Fmassages%2Fpage.tsx&appDir=C%3A%5CUsers%5CMoi%5CHome%5CFREELANCE%5CBMG%5Cbmg-massage%5Cclient%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5CMoi%5CHome%5CFREELANCE%5CBMG%5Cbmg-massage%5Cclient&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!")));
 module.exports = __webpack_exports__;
 
 })();

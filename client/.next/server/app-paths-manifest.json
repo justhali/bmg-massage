@@ -1,3 +1,5 @@
 {
-  "/massages/[id]/page": "app/massages/[id]/page.js"
+  "/massages/[id]/page": "app/massages/[id]/page.js",
+  "/bookings/page": "app/bookings/page.js",
+  "/bookings/[id]/page": "app/bookings/[id]/page.js"
 }

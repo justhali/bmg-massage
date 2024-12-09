@@ -4,7 +4,16 @@ const Massage = require('../models/Massage');
 exports.createMassage = async (req, res) => {
     try {
         const { name, description, price, duration, imageUrl } = req.body;
-        const massage = await Massage.create({ name, description, price, duration, imageUrl });
+        const massage = await Massage.findOrCreate({
+            where: { name },
+            defaults: {
+                name,
+                description,
+                price,
+                duration,
+                imageUrl
+            }
+        });
         res.status(201).json(massage)
     } catch (error) {
         res.status(500).json({ message: 'Error while creating a new massage', error });

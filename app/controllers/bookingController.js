@@ -22,27 +22,27 @@ exports.createBooking = async (req, res) => {
         }
 
 
-        const startTime = await TimeSlot.findByPk(startTimeSlotId);
-        if (!startTime || startTime.isBooked) {
-            await transaction.rollback();
-            return res.status(400).json({ message: "The selected time slot is not available" });
-        }
+        // const startTime = await TimeSlot.findByPk(startTimeSlotId);
+        // if (!startTime || startTime.isBooked) {
+        //     await transaction.rollback();
+        //     return res.status(400).json({ message: "The selected time slot is not available" });
+        // }
 
-        const endTime = new Date(`1970-01-01T${startTime.startTime}`);
-        endTime.setMinutes(endTime.getMinutes() + massage.duration);
+        // const endTime = new Date(`1970-01-01T${startTime.startTime}`);
+        // endTime.setMinutes(endTime.getMinutes() + massage.duration);
 
-        const overlappingSlots = await TimeSlot.findAll({
-            where: {
-                startTime: { [Op.gte]: startTimeSlot.startTime },
-                endTime: { [Op.lte]: endTime.toISOString().slice(11, 19) },
-                isBooked: false,
-            },
-        });
+        // const overlappingSlots = await TimeSlot.findAll({
+        //     where: {
+        //         startTime: { [Op.gte]: startTimeSlot.startTime },
+        //         endTime: { [Op.lte]: endTime.toISOString().slice(11, 19) },
+        //         isBooked: false,
+        //     },
+        // });
 
-        if (overlappingSlots.length !== Math.ceil(massage.duration / 30)) {
-            await transaction.rollback();
-            return res.status(400).json({ message: "The selected time range is not fully available" });
-        }
+        // if (overlappingSlots.length !== Math.ceil(massage.duration / 30)) {
+        //     await transaction.rollback();
+        //     return res.status(400).json({ message: "The selected time range is not fully available" });
+        // }
 
 
         const existingBooking = await Booking.findOne({
@@ -75,12 +75,7 @@ exports.createBooking = async (req, res) => {
 
         await transaction.commit();
 
-        const formattedBooking = {
-            ...booking.toJSON(),
-            bookingDate: moment(booking.bookingDate).format('DD/MM/YYYY'),
-        }
-
-        res.status(201).json(formattedBooking);
+        res.status(201).json(booking);
     } catch (error) {
         await transaction.rollback();
         res.status(500).json({ message: 'Error while creating a new booking', error });

@@ -7,8 +7,8 @@ export interface Massage {
 }
 export interface Booking {
     massageId: number;
-    date: Date;
-    customerEmail: string;
-    customerPhone?: string;
+    bookingDate: string;
+    email?: string;
+    phoneNumber?: string;
     status: string;
 }

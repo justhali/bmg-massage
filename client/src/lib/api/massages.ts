@@ -15,8 +15,8 @@ export const getMassages = async (): Promise<Massage[]> => {
 
 export const getMassageById = async (id: number): Promise<Massage | null> => {
     try {
+
         const response = await axios.get(`${API_URL}/massages/${id}`);
-        console.log("Récupération d'un massage par son id:", response.data);
         return response.data;
     } catch (error) {
         console.error(`Erreur de récupération du massage ${id}`, error);

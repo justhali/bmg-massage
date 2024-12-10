@@ -23,7 +23,7 @@ export const getBookingById = async (id: number): Promise<Booking | null> => {
     }
 }
 
-export const createBooking = async (): Promise<Booking | null> => {
+export const createBooking = async (id: any): Promise<Booking | null> => {
     try {
 
 

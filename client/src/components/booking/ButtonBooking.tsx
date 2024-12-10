@@ -1,7 +1,5 @@
-export default function ButtonBooking() {
-    return (
-        <div>
-            Enter
-        </div>
-    );
+import { Button } from "../../styles/components/ui/button"
+
+export default function ButtonBooking({ title, onClick }) {
+    return <Button onClick={onClick}>{title}</Button>
 }

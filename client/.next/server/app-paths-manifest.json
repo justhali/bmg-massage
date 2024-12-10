@@ -1,5 +1,6 @@
 {
-  "/massages/[id]/page": "app/massages/[id]/page.js",
-  "/bookings/page": "app/bookings/page.js",
-  "/bookings/[id]/page": "app/bookings/[id]/page.js"
+  "/page": "app/page.js",
+  "/massages/page": "app/massages/page.js",
+  "/bookings/[id]/page": "app/bookings/[id]/page.js",
+  "/massages/[id]/page": "app/massages/[id]/page.js"
 }

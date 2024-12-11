@@ -1,17 +1,15 @@
 import { getMassageById } from "lib/api/massages";
+import ButtonBooking from "../booking/ButtonBooking";
 
 
-export default async function Page({ params }: { params: { id: number } }) {
-    const id = await params.id;
+export default async function MassageCard(props) {
+    const params = await props.params;
+    const { id } = params;
     const massage = await getMassageById(id);
 
     return (
         <div>
-            <h1>Massages</h1>
-            <h2>{massage.name}</h2>
-            <p>{massage.description}</p>
-            <p>{massage.price}</p>
-            <p>{massage.duration}</p>
+
         </div>
     );
-}
+} 

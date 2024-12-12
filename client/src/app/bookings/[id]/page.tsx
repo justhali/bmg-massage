@@ -1,4 +1,4 @@
-import { getBookingById } from "lib/api/bookings";
+import { getBookingById } from "../../../lib/api/bookings";
 
 export default async function Page(props) {
     const params = await props.params;

@@ -1,5 +1,6 @@
-import ButtonBooking from "@/components/booking/ButtonBooking";
-import { getMassageById } from "lib/api/massages";
+import ButtonBooking from "@/src/components/booking/ButtonBooking";
+import MassageDetail from "@/src/components/massages/MassageDetail";
+import { getMassageById } from "@/src/lib/api/massages";
 
 
 export default async function Page(props) {
@@ -9,12 +10,13 @@ export default async function Page(props) {
 
     return (
         <div>
-            <h1>Massages</h1>
-            <h2>{massage.name}</h2>
-            <p>{massage.description}</p>
-            <p>{massage.price}</p>
-            <p>{massage.duration}</p>
-            <ButtonBooking massageId={massage.id} title={"Réserver"} />
+            <MassageDetail
+                id={massage.id}
+                name={massage.name}
+                description={massage.description}
+                price={massage.price}
+                duration={massage.duration}
+            />
         </div>
     );
 }   

@@ -1,5 +1,4 @@
 'use client'
-import { Calendar } from "@/styles/components/ui/calendar"
 import { useState } from "react";
 import {
     Dialog,
@@ -9,18 +8,18 @@ import {
     DialogFooter,
     DialogHeader,
     DialogTitle,
-} from "@/styles/components/ui/dialog"
+} from "@/src/app/components/ui/dialog"
+import { Calendar } from "@/src/app/components/ui/calendar";
 
 interface ModalCalendarProps {
     isOpen: boolean;
-    onClose: () => void;
 }
 
-export default function ModalCalendar({ isOpen, onClose }: ModalCalendarProps) {
+export default function ModalCalendar({ isOpen }: ModalCalendarProps) {
     const [date, setDate] = useState<Date | undefined>(new Date())
 
     return (
-        <Dialog open={isOpen} onOpenChange={onClose}>
+        <Dialog open={isOpen}>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
                     <DialogTitle>Sélectionnez une date</DialogTitle>
@@ -28,7 +27,7 @@ export default function ModalCalendar({ isOpen, onClose }: ModalCalendarProps) {
                         Choisissez une date pour votre réservation.
                     </DialogDescription>
                 </DialogHeader>
-                <div className="w-screen">
+                <div>
 
                     <Calendar
                         mode="single"

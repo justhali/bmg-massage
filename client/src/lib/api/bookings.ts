@@ -23,11 +23,15 @@ export const getBookingById = async (id: number): Promise<Booking | null> => {
     }
 }
 
-export const createBooking = async (id: any): Promise<Booking | null> => {
+export const createBooking = async (bookingDate: {
+    massageId: string,
+    bookingDate: string,
+    email?: string,
+    phoneNumber?: string,
+    status: string,
+}): Promise<Booking | null> => {
     try {
-
-
-        const response = await axios.post(`${API_URL}/booking`);
+        const response = await axios.post(`${API_URL}/booking`, bookingDate);
         return response.data;
     } catch (error) {
         console.error(`Erreur de récupération du Booking`, error);

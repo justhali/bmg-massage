@@ -1,4 +1,5 @@
-import { getMassages } from "lib/api/massages";
+import { getMassages } from "@/src/lib/api/massages";
+
 
 export default async function Page() {
     const massagesList = await getMassages();
@@ -8,7 +9,7 @@ export default async function Page() {
             <h1>Massages</h1>
             {
                 massagesList.map(massage => (
-                    <p>{massage.name}</p>
+                    <p key={massage.id}>{massage.name}</p>
                 ))
             }
         </div>

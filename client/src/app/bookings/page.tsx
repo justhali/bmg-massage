@@ -1,4 +1,4 @@
-import { getBookings } from "lib/api/bookings";
+import { getBookings } from "../../lib/api/bookings";
 
 export default async function page() {
     const bookingList = await getBookings();

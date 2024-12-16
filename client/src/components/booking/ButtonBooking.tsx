@@ -1,7 +1,8 @@
 'use client'
 import { useState } from "react";
-import ModalCalendar from "./ModalCalendar";
+
 import { Button } from "@/src/app/components/ui/button";
+import { BookingForm } from "./BookingForm";
 
 
 
@@ -18,7 +19,9 @@ export default function ButtonBooking({ title }) {
             >
                 {title}
             </Button>
-            <ModalCalendar isOpen={isOpen} />
+            {isOpen &&
+                <BookingForm isOpen={isOpen}
+                />}
         </div>
     );
 }

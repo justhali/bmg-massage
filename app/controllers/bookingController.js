@@ -2,16 +2,21 @@ const { Op } = require('sequelize');
 const moment = require("moment");
 moment.locale('fr');
 const sequelize = require('../config/sequelize');
-const { Booking, Massage } = require('../models/');
+const { Booking, Massage, User } = require('../models/');
 
 exports.createBooking = async (req, res) => {
-    const { massageId, bookingDate, status } = req.body;
+    const { massageId, bookingDate, status, userId } = req.body;
 
     try {
 
         const massage = await Massage.findByPk(massageId);
         if (!massage) {
             return res.status(400).json({ message: "Massage not found" });
+        }
+
+        const user = await User.findByPk(userId);
+        if (!user) {
+            return res.status(400).json({ user: "User not found" });
         }
 
         const existingBooking = await Booking.findOne({
@@ -31,12 +36,12 @@ exports.createBooking = async (req, res) => {
             massageId,
             bookingDate,
             status,
+            userId
         });
 
 
         res.status(201).json(booking);
     } catch (error) {
-        await transaction.rollback();
         res.status(500).json({ message: 'Error while creating a new booking', error });
     }
 };

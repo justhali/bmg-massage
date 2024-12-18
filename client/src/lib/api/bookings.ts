@@ -8,7 +8,7 @@ export const getBookings = async (): Promise<Booking[]> => {
         const response = await axios.get(`${API_URL}/bookings`);
         return response.data;
     } catch (error) {
-        console.error('Erreur de récupération des Bookings', error);
+        throw (error);
     }
 }
 

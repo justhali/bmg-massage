@@ -6,7 +6,7 @@ import { BookingForm } from "./BookingForm";
 
 
 
-export default function ButtonBooking({ title }) {
+export default function ButtonBooking({ title, massageId }) {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleModal = () => setIsOpen(!isOpen);
@@ -20,7 +20,9 @@ export default function ButtonBooking({ title }) {
                 {title}
             </Button>
             {isOpen &&
-                <BookingForm isOpen={isOpen}
+                <BookingForm
+                    isOpen={isOpen}
+                    massageId={massageId}
                 />}
         </div>
     );

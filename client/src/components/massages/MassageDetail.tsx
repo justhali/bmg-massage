@@ -45,7 +45,7 @@ export default function MassageDetail({
                         <div className="text-lg text-gray-800 font-semibold mb-6">Durée : {duration}</div>
                     </div>
 
-                    <ButtonBooking title={"Réserver"} />
+                    <ButtonBooking title={"Réserver"} massageId={id} />
                 </div>
             </div>
         </div>

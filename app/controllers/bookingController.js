@@ -2,48 +2,17 @@ const { Op } = require('sequelize');
 const moment = require("moment");
 moment.locale('fr');
 const sequelize = require('../config/sequelize');
-const { Booking, Massage, TemporaryUser, TimeSlot } = require('../models/');
+const { Booking, Massage } = require('../models/');
 
 exports.createBooking = async (req, res) => {
-    const { massageId, bookingDate, startTimeSlotId, status, email, phoneNumber } = req.body;
-
-    if (!email && !phoneNumber) {
-        return res.status(400).json({ message: "Email or phone number is required" });
-    }
-
-    const transaction = await sequelize.transaction();
+    const { massageId, bookingDate, status } = req.body;
 
     try {
 
         const massage = await Massage.findByPk(massageId);
         if (!massage) {
-            await transaction.rollback();
             return res.status(400).json({ message: "Massage not found" });
         }
-
-
-        // const startTime = await TimeSlot.findByPk(startTimeSlotId);
-        // if (!startTime || startTime.isBooked) {
-        //     await transaction.rollback();
-        //     return res.status(400).json({ message: "The selected time slot is not available" });
-        // }
-
-        // const endTime = new Date(`1970-01-01T${startTime.startTime}`);
-        // endTime.setMinutes(endTime.getMinutes() + massage.duration);
-
-        // const overlappingSlots = await TimeSlot.findAll({
-        //     where: {
-        //         startTime: { [Op.gte]: startTimeSlot.startTime },
-        //         endTime: { [Op.lte]: endTime.toISOString().slice(11, 19) },
-        //         isBooked: false,
-        //     },
-        // });
-
-        // if (overlappingSlots.length !== Math.ceil(massage.duration / 30)) {
-        //     await transaction.rollback();
-        //     return res.status(400).json({ message: "The selected time range is not fully available" });
-        // }
-
 
         const existingBooking = await Booking.findOne({
             where: {
@@ -58,22 +27,12 @@ exports.createBooking = async (req, res) => {
             return res.status(400).json({ message: 'This date is already booked' });
         }
 
-        const [temporaryUser] = await TemporaryUser.findOrCreate({
-            where: {
-                email: email || null,
-                phoneNumber: phoneNumber || null,
-            },
-            transaction,
-        });
-
         const booking = await Booking.create({
             massageId,
             bookingDate,
             status,
-            temporaryUserId: temporaryUser.id,
-        }, { transaction });
+        });
 
-        await transaction.commit();
 
         res.status(201).json(booking);
     } catch (error) {

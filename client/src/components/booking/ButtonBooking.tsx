@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import { Button } from "@/src/app/components/ui/button";
 import { BookingForm } from "./BookingForm";
+import Link from "next/link";
 
 
 
@@ -16,14 +17,10 @@ export default function ButtonBooking({ title, massageId }) {
             <Button
                 onClick={toggleModal}
                 size="lg"
+                asChild
             >
-                {title}
+                <Link href="/login">{title}</Link>
             </Button>
-            {isOpen &&
-                <BookingForm
-                    isOpen={isOpen}
-                    massageId={massageId}
-                />}
         </div>
     );
 }

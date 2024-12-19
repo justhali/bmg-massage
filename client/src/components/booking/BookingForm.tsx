@@ -70,7 +70,7 @@ export function BookingForm({ isOpen, massageId }) {
                 </DialogHeader>
 
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                    <form className="space-y-8">
 
 
                         <FormField
@@ -93,7 +93,7 @@ export function BookingForm({ isOpen, massageId }) {
                                                     {field.value ? format(field.value, "PPP") : <span>Sélectionner une date</span>}
                                                 </Button>
                                             </PopoverTrigger>
-                                            <PopoverContent className="w-auto p-0 bg-gray-900 text-white" align="start">
+                                            <PopoverContent className="w-auto p-0 z-50 bg-gray-900 text-white" align="start">
                                                 <Calendar
                                                     mode="single"
                                                     selected={date}

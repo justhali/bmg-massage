@@ -29,6 +29,7 @@ export default function MassageDetail({
                         alt={`Image de ${name}`}
                         width={600}
                         height={600}
+                        priority
                         className="w-full h-auto max-h-[600px] object-cover rounded-lg border border-gray-300"
                     />
                 </div>

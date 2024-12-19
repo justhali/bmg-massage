@@ -12,3 +12,8 @@ export interface Booking {
     phoneNumber?: string;
     status: string;
 }
+export interface User {
+    username?: string;
+    email: string;
+    password: string;
+}

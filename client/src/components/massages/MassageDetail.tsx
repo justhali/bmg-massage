@@ -1,6 +1,8 @@
 
+import { Button } from '@/src/app/components/ui/button';
 import Image from 'next/image';
-import ButtonBooking from '../booking/ButtonBooking';
+import Link from 'next/link';
+
 
 interface MassageDetailProps {
     id: number;
@@ -46,7 +48,7 @@ export default function MassageDetail({
                         <div className="text-lg text-gray-800 font-semibold mb-6">Durée : {duration}</div>
                     </div>
 
-                    <ButtonBooking title={"Réserver"} massageId={id} />
+                    <Button asChild><Link href={"/login"}>Réserver</Link></Button>
                 </div>
             </div>
         </div>

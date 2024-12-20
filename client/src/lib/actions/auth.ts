@@ -1,8 +1,7 @@
 "use server"
 import { createUser, loginUser } from "@/src/lib/api/users";
 
-export async function registerUser(
-    prevState,
+export async function auth(
     formData
 ) {
     const email = formData.get('email')
@@ -12,17 +11,16 @@ export async function registerUser(
         const user = await loginUser({ email, password });
 
         if (user) {
-            return { success: true, message: "Connexion réussie.", user }
+            return { success: true, message: "Connexion réussie, vous êtes maintenant connecté.", user };
         }
-
         const newUser = await createUser({ email, password });
 
 
         if (newUser) {
-            return { success: true, message: "Utilisateur créé avec succès.", user: newUser };
+            return { success: true, message: "Compte créé avec succès.", user: newUser };
         }
 
-        return { error: "Impossible de créer l'utilisateur." };
+        return { error: "Impossible de créer un compte." };
     } catch (error) {
         console.error("Erreur dans registerUser :", error);
         return { error: "Une erreur s'est produite. Réessayez plus tard." };

@@ -1,5 +1,5 @@
 'use client'
-import { cn, formatErrorMessages } from "@/src/lib/utils"
+import { cn } from "@/src/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -9,28 +9,37 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { registerSchema } from "@/src/lib/schemas/user"
-import { useActionState, useEffect, useState } from "react"
-import {
-    registerUser
-} from "@/src/lib/actions/userAction"
+import { useState } from "react"
+import { auth } from "@/src/lib/actions/auth"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 
 export function LoginForm({
     className,
     ...props
 }: React.ComponentPropsWithoutRef<"div">) {
-    const [errorMessage, setErrorMessage] = useState("")
-    const [state, registerAction, pending] = useActionState(registerUser, {
+    const router = useRouter()
+    const [pending, setPending] = useState(false)
+    const [state, setState] = useState<{
+        message?: string | null,
+        error?: string | null
+    }>({
         message: null,
         error: null
     })
 
-    const { message, error } = state
-
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        setPending(true)
+        const formData = new FormData(e.currentTarget)
+        const response = await auth(formData)
+        setState(response)
+        setPending(false)
+        if (response.success) {
+            router.back()
+        }
+    }
 
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -41,7 +50,7 @@ export function LoginForm({
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <form action={registerAction}>
+                    <form onSubmit={handleSubmit} >
                         <div className="grid gap-6">
                             <div className="flex flex-col gap-4">
                                 <Button variant="outline" className="w-full">
@@ -92,35 +101,23 @@ export function LoginForm({
                                     </div>
                                     <Input id="password" type="password" name="password" required className="px-2" />
                                 </div>
-                                <Button disabled={pending} type="submit" className="w-full">
-
-                                    Se connecter
+                                {error && <p className="text-red-500">{error}</p>}
+                                {message && <p className="text-green-500">{message}</p>}
+                                <Button type="submit" className="w-full" disabled={pending}>
+                                    {pending ? "Connexion en cours..." : "Se connecter"}
                                 </Button>
-                                {error && (
-                                    <div role='alert' className='alert alert-error'>
-                                        <span>Error! Hey yo{error}</span>
-                                    </div>
-                                )}
-                                {message && (
-                                    <div role='alert' className='alert alert-success'>
-                                        <span>{message}</span>
-                                    </div>
-                                )}
-                            </div>
-                            <div className="text-center text-sm">
-                                vous n&apos;avez pas encore de compte ?{" "}
-                                <a href="#" className="underline underline-offset-4">
-                                    S'inscrire
-                                </a>
                             </div>
                         </div>
                     </form>
+                    <div className="text-center mt-4">
+                        <p>Vous n'avez pas de compte ? <Link href="/register">S'inscrire</Link></p>
+                    </div>
                 </CardContent>
             </Card>
-            <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary  ">
+            {/* <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary  ">
                 By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
                 and <a href="#">Privacy Policy</a>.
-            </div>
+            </div> */}
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import ButtonBooking from "@/src/components/booking/ButtonBooking";
+import ButtonBooking from "@/src/components/booking/Button";
 import MassageDetail from "@/src/components/massages/MassageDetail";
 import { getMassageById } from "@/src/lib/api/massages";
 

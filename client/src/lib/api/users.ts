@@ -4,7 +4,7 @@ import { User } from "../types/index";
 
 const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
-export const createUser = async (newUser: {
+export const registerUser = async (newUser: {
     email: string;
     password: string;
 }): Promise<User | null> => {
@@ -21,12 +21,12 @@ export const createUser = async (newUser: {
 export const loginUser = async (existingUser: {
     email: string;
     password: string;
-}): Promise<User | null> => {
+}): Promise<User | string> => {
     try {
         const response = await axios.post(`${API_URL}/login`, existingUser);
         return response.data;
     } catch (error) {
         console.error("Erreur de connexion d'un utilisateur :", error);
-        return null;
+        return "hello";
     }
 };

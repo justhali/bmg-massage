@@ -9,18 +9,19 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useState } from "react"
+import { useState, useTransition } from "react"
 import { auth } from "@/src/lib/actions/auth"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { loginUser } from "@/src/lib/api/users"
 
 
 export function LoginForm({
     className,
     ...props
 }: React.ComponentPropsWithoutRef<"div">) {
+    const [pending, startTransition] = useTransition();
     const router = useRouter()
-    const [pending, setPending] = useState(false)
     const [state, setState] = useState<{
         message?: string | null,
         error?: string | null
@@ -30,15 +31,20 @@ export function LoginForm({
     })
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        setPending(true)
-        const formData = new FormData(e.currentTarget)
-        const response = await auth(formData)
-        setState(response)
-        setPending(false)
-        if (response.success) {
-            router.back()
-        }
+
+        startTransition(async () => {
+            e.preventDefault()
+            const formData = new FormData(e.currentTarget)
+            try {
+                const email = formData.get('email') as string;
+                const password = formData.get('password') as string;
+                await loginUser({ email, password })
+
+            } catch (error) {
+                console.log(error)
+            }
+
+        })
     }
 
     return (
@@ -101,8 +107,8 @@ export function LoginForm({
                                     </div>
                                     <Input id="password" type="password" name="password" required className="px-2" />
                                 </div>
-                                {error && <p className="text-red-500">{error}</p>}
-                                {message && <p className="text-green-500">{message}</p>}
+                                {/* {error && <p className="text-red-500">{error}</p>}
+                                {message && <p className="text-green-500">{message}</p>} */}
                                 <Button type="submit" className="w-full" disabled={pending}>
                                     {pending ? "Connexion en cours..." : "Se connecter"}
                                 </Button>

@@ -1,6 +1,6 @@
 import { GalleryVerticalEnd } from "lucide-react"
 
-import { LoginForm } from "../../components/user/login-form"
+import { RegisterForm } from "../../components/user/register-form"
 
 export default function Page() {
     return (
@@ -9,7 +9,7 @@ export default function Page() {
                 <a href="#" className="flex items-center gap-2 self-center font-medium">
                     BMG Massage
                 </a>
-                <LoginForm />
+                <RegisterForm />
             </div>
         </div>
     )

@@ -1,6 +1,7 @@
 import { GalleryVerticalEnd } from "lucide-react"
 
 import { RegisterForm } from "../../components/user/register-form"
+import Link from "next/link"
 
 export default function Page() {
     return (
@@ -10,6 +11,12 @@ export default function Page() {
                     BMG Massage
                 </a>
                 <RegisterForm />
+                <p className="mt-4 text-center">
+                    Pas encore de compte ?{" "}
+                    <Link href={"/login"} className="text-blue-600 hover:underline">
+                        Se connecter
+                    </Link>
+                </p>
             </div>
         </div>
     )

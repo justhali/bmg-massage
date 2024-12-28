@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState, useTransition } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { registerUser } from "@/src/lib/api/users"
 
 
@@ -25,7 +25,9 @@ export function RegisterForm({
         message: null,
         error: null
     })
-
+    const searchParams = useSearchParams();
+    const massageId = searchParams.get('massageId');
+    const redirectUrl = searchParams.get('redirect') || `/massages/${massageId}`;
     const { message, error } = state;
 
     const handleSubmit = async (e) => {
@@ -41,8 +43,7 @@ export function RegisterForm({
 
                 if (response) {
                     setState({ message: "Inscription réussie. Redirection...", error: null })
-                    router.back()
-
+                    router.push(redirectUrl)
                 } else {
                     setState({ message: null, error: "Inscription échouée. Veuillez réessayer." })
                 }
@@ -129,9 +130,6 @@ export function RegisterForm({
                             </div>
                         </div>
                     </form>
-                    <div className="text-center mt-4">
-                        <p>Vous avez déjà un compte? <Link href="/login">Créer un compte</Link></p>
-                    </div>
                 </CardContent>
             </Card>
             {/* <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary  ">

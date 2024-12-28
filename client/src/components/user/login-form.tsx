@@ -10,10 +10,9 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState, useTransition } from "react"
-import { auth } from "@/src/lib/actions/auth"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { loginUser } from "@/src/lib/api/users"
+import Link from "next/link"
 
 
 export function LoginForm({
@@ -22,13 +21,15 @@ export function LoginForm({
 }: React.ComponentPropsWithoutRef<"div">) {
     const [pending, startTransition] = useTransition();
     const router = useRouter()
-    const [state, setState] = useState<{
-        message?: string | null,
-        error?: string | null
-    }>({
+    const [state, setState] = useState({
         message: null,
         error: null
-    })
+    });
+    const searchParams = useSearchParams();
+    const massageId = searchParams.get('massageId');
+    const redirectUrl = searchParams.get('redirect') || (massageId ? `/massages/${massageId}` : '/');
+
+    const { message, error } = state;
 
     const handleSubmit = async (e) => {
 
@@ -38,10 +39,20 @@ export function LoginForm({
             try {
                 const email = formData.get('email') as string;
                 const password = formData.get('password') as string;
-                await loginUser({ email, password })
+                const response = await loginUser({ email, password })
 
+
+                if (response) {
+                    setState({
+                        message: "Connexion réussie. Redirection...",
+                        error: null
+                    });
+
+                    router.push(redirectUrl);
+                }
             } catch (error) {
-                console.log(error)
+                setState({ message: null, error: "Une erreur s'est produite. Veuillez réessayer plus tard." })
+                console.error(error)
             }
 
         })
@@ -92,6 +103,9 @@ export function LoginForm({
                                         name="email"
                                         placeholder="m@example.com"
                                         className="px-2"
+                                        autoCapitalize="none"
+                                        autoComplete="email"
+                                        autoCorrect="off"
                                         required
                                     />
                                 </div>
@@ -105,19 +119,33 @@ export function LoginForm({
                                             Mot de passe oublié ?
                                         </a>
                                     </div>
-                                    <Input id="password" type="password" name="password" required className="px-2" />
+                                    <Input
+                                        id="password"
+                                        type="password"
+                                        name="password"
+                                        autoCapitalize="none"
+                                        autoComplete="email"
+                                        autoCorrect="off"
+                                        required
+                                        className="px-2" />
                                 </div>
-                                {/* {error && <p className="text-red-500">{error}</p>}
-                                {message && <p className="text-green-500">{message}</p>} */}
+
                                 <Button type="submit" className="w-full" disabled={pending}>
                                     {pending ? "Connexion en cours..." : "Se connecter"}
                                 </Button>
                             </div>
                         </div>
                     </form>
-                    <div className="text-center mt-4">
-                        <p>Vous n'avez pas de compte ? <Link href="/register">S'inscrire</Link></p>
-                    </div>
+                    {message && (
+                        <div className="bg-green-100 p-4 rounded text-green-700">
+                            {message}
+                        </div>
+                    )}
+                    {error && (
+                        <div className="bg-red-100 p-4 rounded text-red-700">
+                            {error}
+                        </div>
+                    )}
                 </CardContent>
             </Card>
             {/* <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary  ">

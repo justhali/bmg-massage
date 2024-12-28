@@ -1,5 +1,4 @@
-import { GalleryVerticalEnd } from "lucide-react"
-
+import Link from "next/link"
 import { LoginForm } from "../../components/user/login-form"
 
 export default function Page() {
@@ -11,6 +10,12 @@ export default function Page() {
                 </a>
                 <LoginForm />
             </div>
+            <p className="mt-4 text-center">
+                Pas encore de compte ?{" "}
+                <Link href={"/register"} className="text-blue-600 hover:underline">
+                    S'inscrire
+                </Link>
+            </p>
         </div>
     )
 }

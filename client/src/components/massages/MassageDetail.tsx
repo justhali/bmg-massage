@@ -1,5 +1,6 @@
-
+"use client"
 import { Button } from '@/src/app/components/ui/button';
+import { useAuth } from '@/src/app/contexts/AuthContext';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -19,6 +20,35 @@ export default function MassageDetail({
     price,
     duration,
 }: MassageDetailProps) {
+    const { user } = useAuth();
+
+    const handlePayment = async (massageId: number) => {
+        // try {
+        //     // Appel à votre API pour créer une session de paiement SumUp
+        //     const response = await fetch('/create-payment', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify({
+        //             massageId,
+        //             userId: user.id
+        //         }),
+        //     });
+
+        //     if (!response.ok) {
+        //         throw new Error('Erreur lors de la création du paiement');
+        //     }
+
+        //     const { paymentUrl } = await response.json();
+
+        //     // Redirection vers la page de paiement SumUp
+        //     window.location.href = paymentUrl;
+        // } catch (error) {
+        //     console.error('Erreur de paiement:', error);
+        //     // Gérer l'erreur (afficher un message à l'utilisateur)
+        // }
+    };
     return (
         <div className="max-w-6xl mx-auto p-8 bg-white rounded-lg shadow-md border border-gray-200">
 
@@ -48,7 +78,17 @@ export default function MassageDetail({
                         <div className="text-lg text-gray-800 font-semibold mb-6">Durée : {duration}</div>
                     </div>
 
-                    <Button asChild><Link href={"/login"}>Réserver</Link></Button>
+                    {user ? (
+                        // Bouton de paiement pour utilisateurs connectés
+                        <Button className="w-full" onClick={() => handlePayment(id)}>
+                            Payer {price.toFixed(2)} €
+                        </Button>
+                    ) : (
+                        // Bouton de connexion pour utilisateurs non connectés
+                        <Button asChild className="w-full">
+                            <Link href={`/login?massageId=${id}`}>Se connecter pour réserver</Link>
+                        </Button>
+                    )}
                 </div>
             </div>
         </div>

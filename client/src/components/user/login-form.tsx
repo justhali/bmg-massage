@@ -11,9 +11,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState, useTransition } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
-import { loginUser } from "@/src/lib/api/users"
-import Link from "next/link"
-
+import { useAuth } from "@/src/app/contexts/AuthContext"
 
 export function LoginForm({
     className,
@@ -27,8 +25,8 @@ export function LoginForm({
     });
     const searchParams = useSearchParams();
     const massageId = searchParams.get('massageId');
-    const redirectUrl = searchParams.get('redirect') || (massageId ? `/massages/${massageId}` : '/');
-
+    const redirectUrl = searchParams.get('redirect') || (massageId ? `/massages/${massageId}` : '/massages');
+    const { login } = useAuth();
     const { message, error } = state;
 
     const handleSubmit = async (e) => {
@@ -39,17 +37,14 @@ export function LoginForm({
             try {
                 const email = formData.get('email') as string;
                 const password = formData.get('password') as string;
-                const response = await loginUser({ email, password })
+                await login({ email, password })
 
+                setState({
+                    message: "Connexion réussie. Redirection...",
+                    error: null
+                });
 
-                if (response) {
-                    setState({
-                        message: "Connexion réussie. Redirection...",
-                        error: null
-                    });
-
-                    router.push(redirectUrl);
-                }
+                router.push(redirectUrl);
             } catch (error) {
                 setState({ message: null, error: "Une erreur s'est produite. Veuillez réessayer plus tard." })
                 console.error(error)

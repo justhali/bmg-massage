@@ -1,4 +1,8 @@
+
 import { getMassages } from "@/src/lib/api/massages";
+import MassageCard from "@/src/components/massages/MassageCard";
+import LogoutButton from "@/src/components/layout/logoutButton";
+
 
 
 export default async function Page() {
@@ -9,9 +13,16 @@ export default async function Page() {
             <h1>Massages</h1>
             {
                 massagesList.map(massage => (
-                    <p key={massage.id}>{massage.name}</p>
+                    <MassageCard
+                        key={massage.id}
+                        massageId={massage.id}
+                        title={massage.name}
+                        price={massage.price}
+                        duration={massage.duration}
+                        description={massage.description} />
                 ))
             }
+            <LogoutButton />
         </div>
     );
 }

@@ -1,55 +1,41 @@
 "use client"
 import { User, LoginCredentials } from '@/src/lib/types';
-import { loginUser, validateToken } from '@/src/lib/api/users';
-import { createContext, useContext, useState, useEffect } from 'react';
+import { loginUser } from '@/src/lib/api/users';
+import { createContext, useContext, useState } from 'react';
 
 interface AuthContextType {
-    user: User | null;
-    login: (credentials: LoginCredentials) => Promise<User | undefined>;
+    isAuthenticated: User | null;
+    token: string;
+    // isLoading: boolean;
+    login: (credentials: LoginCredentials) => Promise<void>;
     logout: () => void;
-    isLoading: boolean;
 }
 
-export const AuthContext = createContext<AuthContextType>(null!);
+export const AuthContext = createContext<AuthContextType | null>(null);
+
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        const validateUserToken = async (token: string) => {
-            try {
-                const userData = await validateToken(token);
-                if (typeof userData !== 'string') {
-                    setUser(userData);
-                }
-            } catch (error) {
-                localStorage.removeItem('token');
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        const token = localStorage.getItem('token');
-        if (token) {
-            validateUserToken(token);
-        } else {
-            setIsLoading(false);
-        }
-    }, []);
+    // const [isLoading, setIsLoading] = useState(false);
+    const [token, setToken] = useState<string>("");
 
     const login = async (credentials: LoginCredentials) => {
         try {
             const response = await loginUser(credentials);
-            if (typeof response !== 'string' && response.token && response.user) {
-                localStorage.setItem('token', response.token);
-                setUser(response.user);
-                console.log('User set after login:', response.user);
-                return response.user;
+            const isResponseValid = response && response.token && response.user;
+
+            if (!isResponseValid) {
+                throw new Error("Réponse invalide du serveur.");
             }
+
+            console.log("Ici c'est la réponse du authContext", response)
+            setToken(response.token);
+            setUser(response.user);
+            localStorage.setItem('token', response.token);
+            setUser(response.user);
         } catch (error) {
-            console.error(error);
-            throw error;
+            console.error("Erreur lors du login :", error);
+            throw new Error(error.message || "Erreur inattendue lors de la connexion.");
         }
     };
 
@@ -58,11 +44,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setUser(null);
     };
 
-    const value = {
-        user,
+    const value: AuthContextType = {
+        isAuthenticated: user,
+        token,
         login,
-        logout,
-        isLoading
+        logout
+        // isLoading
     };
 
     return (

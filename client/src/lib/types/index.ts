@@ -18,6 +18,11 @@ export interface User {
     password: string;
 }
 
+
+export interface AuthUser {
+    token: string;
+    user: User;
+}
 export interface LoginCredentials {
     email: string;
     password: string;

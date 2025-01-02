@@ -27,7 +27,7 @@ export function RegisterForm({
     })
     const searchParams = useSearchParams();
     const massageId = searchParams.get('massageId');
-    const redirectUrl = searchParams.get('redirect') || `/massages/${massageId}`;
+    const redirectUrl = searchParams.get('redirect') || `/massages`;
     const { message, error } = state;
 
     const handleSubmit = async (e) => {

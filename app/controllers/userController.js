@@ -81,3 +81,13 @@ exports.validateUser = async (req, res) => {
         res.status(500).json({ message: 'Erreur serveur' });
     }
 };
+
+exports.getUser = async (req, res) => {
+    try {
+        const user = await User.findAll();
+        res.status(200).json(user);
+    } catch (error) {
+        console.error('Erreur récupération utilisateur:', error);
+        res.status(500).json({ message: 'Erreur serveur' });
+    }
+};

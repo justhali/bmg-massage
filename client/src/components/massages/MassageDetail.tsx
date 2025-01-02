@@ -2,7 +2,8 @@
 import { Button } from '@/src/app/components/ui/button';
 import { useAuth } from '@/src/app/contexts/AuthContext';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 
 interface MassageDetailProps {
@@ -14,15 +15,40 @@ interface MassageDetailProps {
 }
 
 export default function MassageDetail({
-    id,
     name,
     description,
     price,
     duration,
 }: MassageDetailProps) {
-    const { user } = useAuth();
+    const { isAuthenticated, token } = useAuth();
+    const router = useRouter()
+    const { id } = useParams();
 
-    const handlePayment = async (massageId: number) => {
+    const [massage, setMassage] = useState<any>(null);
+    const [error, setError] = useState<string | null>(null);
+    useEffect(() => {
+        if (!isAuthenticated) {
+            router.push("/login");
+        } else if (id) {
+            fetch(`/massages/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Erreur lors du chargement des données.");
+                    }
+                    return response.json();
+                })
+                .then((data) => setMassage(data))
+                .catch((err) => setError(err.message));
+        }
+    }, [id, isAuthenticated, router, token]);
+
+    if (!isAuthenticated) return null; // Évite d'afficher la page si l'utilisateur n'est pas connecté
+
+    const handlePayment = async (id: number) => {
         // try {
         //     // Appel à votre API pour créer une session de paiement SumUp
         //     const response = await fetch('/create-payment', {
@@ -78,19 +104,16 @@ export default function MassageDetail({
                         <div className="text-lg text-gray-800 font-semibold mb-6">Durée : {duration}</div>
                     </div>
 
-                    {user ? (
-                        // Bouton de paiement pour utilisateurs connectés
-                        <Button className="w-full" onClick={() => handlePayment(id)}>
-                            Payer {price.toFixed(2)} €
-                        </Button>
-                    ) : (
-                        // Bouton de connexion pour utilisateurs non connectés
-                        <Button asChild className="w-full">
-                            <Link href={`/login?massageId=${id}`}>Se connecter pour réserver</Link>
-                        </Button>
-                    )}
+                    <Button className="w-full">
+                        Payer {price.toFixed(2)} €
+                    </Button>
+
                 </div>
             </div>
         </div>
     );
 }
+function useParams(): { id: any; } {
+    throw new Error('Function not implemented.');
+}
+

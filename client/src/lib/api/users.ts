@@ -44,19 +44,19 @@ export const loginUser = async (credentials: LoginCredentials): Promise<AuthResp
     }
 };
 
-export const validateToken = async (token: string): Promise<User> => {
-    try {
-        const response = await axios.get('/validate', {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        return response.data;
-    } catch (error) {
-        if (axios.isAxiosError(error)) {
-            const errorMessage = error.response?.data?.message || "Token invalide";
-            throw new Error(errorMessage);
-        }
-        throw new Error("Erreur lors de la validation du token");
-    }
-};
+// export const validateToken = async (token: string): Promise<User> => {
+//     try {
+//         const response = await api.get('/validate', {
+//             headers: {
+//                 Authorization: `Bearer ${token}`,
+//             },
+//         });
+//         return response.data;
+//     } catch (error) {
+//         if (axios.isAxiosError(error)) {
+//             const errorMessage = error.response?.data?.message || "Token invalide";
+//             throw new Error(errorMessage);
+//         }
+//         throw new Error("Erreur lors de la validation du token");
+//     }
+// };

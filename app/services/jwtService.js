@@ -18,8 +18,10 @@ const jwtService = {
 
     verifyToken(token) {
         try {
-            return jwt.verify(token, JWT_SECRET);
+            const isTokenValid = jwt.verify(token, JWT_SECRET);
+            return isTokenValid;
         } catch (error) {
+            console.error(error);
             throw new Error('Token invalide');
         }
     }

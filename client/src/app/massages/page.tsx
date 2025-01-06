@@ -1,9 +1,6 @@
 
 import { getMassages } from "@/src/lib/api/massages";
 import MassageCard from "@/src/app/components/massages/MassageCard";
-import LogoutButton from "@/src/app/components/ui/logoutButton";
-
-
 
 export default async function Page() {
     const massagesList = await getMassages();
@@ -22,7 +19,6 @@ export default async function Page() {
                         description={massage.description} />
                 ))
             }
-            <LogoutButton />
         </div>
     );
 }

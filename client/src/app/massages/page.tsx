@@ -1,7 +1,7 @@
 
 import { getMassages } from "@/src/lib/api/massages";
-import MassageCard from "@/src/components/massages/MassageCard";
-import LogoutButton from "@/src/components/layout/logoutButton";
+import MassageCard from "@/src/app/components/massages/MassageCard";
+import LogoutButton from "@/src/components/ui/logoutButton";
 
 
 

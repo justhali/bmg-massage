@@ -1,4 +1,4 @@
-import MassageDetail from "@/src/components/massages/MassageDetail";
+import MassageDetail from "@/src/app/components/massages/MassageDetail";
 import { getMassageById } from "@/src/lib/api/massages";
 
 

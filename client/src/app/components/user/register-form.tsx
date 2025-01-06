@@ -1,14 +1,14 @@
 'use client'
 import { cn } from "@/src/lib/utils"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/src/components/ui/button"
 import {
     Card,
     CardContent,
     CardDescription,
     CardHeader,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/src/components/ui/card"
+import { Input } from "@/src/components/ui/input"
+import { Label } from "@/src/components/ui/label"
 import { useState, useTransition } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"

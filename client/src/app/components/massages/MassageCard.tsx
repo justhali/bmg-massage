@@ -34,7 +34,6 @@ export default function MassageCard({
 
     const { isAuthenticated } = useAuth();
     const router = useRouter();
-    console.log("Ici c'est isAuthenticated", isAuthenticated)
     return (
         <Card className={cn("w-[380px]", className)} {...props}>
             <CardHeader>
@@ -57,7 +56,6 @@ export default function MassageCard({
                     </button>
                 )}
             </CardFooter>
-            <pre>{JSON.stringify(isAuthenticated)}</pre>
         </Card>
     )
 }

@@ -28,7 +28,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
                 throw new Error("Réponse invalide du serveur.");
             }
 
-            console.log("Ici c'est la réponse du authContext", response)
             setToken(response.token);
             setUser(response.user);
             localStorage.setItem('token', response.token);

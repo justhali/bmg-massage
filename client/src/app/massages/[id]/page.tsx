@@ -5,6 +5,7 @@ import { getMassageById } from "@/src/lib/api/massages";
 export default async function Page(props) {
     const params = await props.params;
     const { id } = params;
+
     const massage = await getMassageById(id);
 
     return (

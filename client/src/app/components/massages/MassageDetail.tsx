@@ -15,38 +15,13 @@ interface MassageDetailProps {
 }
 
 export default function MassageDetail({
+    id,
     name,
     description,
     price,
     duration,
 }: MassageDetailProps) {
-    const { isAuthenticated, token } = useAuth();
-    const router = useRouter()
-    const { id } = useParams();
 
-    const [massage, setMassage] = useState<any>(null);
-    const [error, setError] = useState<string | null>(null);
-    useEffect(() => {
-        if (!isAuthenticated) {
-            router.push("/login");
-        } else if (id) {
-            fetch(`/massages/${id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error("Erreur lors du chargement des données.");
-                    }
-                    return response.json();
-                })
-                .then((data) => setMassage(data))
-                .catch((err) => setError(err.message));
-        }
-    }, [id, isAuthenticated, router, token]);
-
-    if (!isAuthenticated) return null; // Évite d'afficher la page si l'utilisateur n'est pas connecté
 
     const handlePayment = async (id: number) => {
         // try {
@@ -113,7 +88,3 @@ export default function MassageDetail({
         </div>
     );
 }
-function useParams(): { id: any; } {
-    throw new Error('Function not implemented.');
-}
-

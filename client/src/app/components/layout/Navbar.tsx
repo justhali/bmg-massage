@@ -2,9 +2,8 @@
 
 import * as React from "react"
 import Link from "next/link"
-
-import { cn } from "@/src/lib/utils"
-// import { Icons } from "@/components/icons"
+import { Menu, User, X, ShoppingCart } from 'lucide-react'
+import { cn } from "@/src//lib/utils"
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -14,109 +13,149 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+import { useState } from "react"
+import { Button } from "@/src/components/ui/button"
+import { useAuth } from "../../contexts/AuthContext"
+import LogoutButton from "../ui/logoutButton"
 
-const components: { title: string; href: string; description: string }[] = [
+const components: { title: string; href: string }[] = [
     {
-        title: "Alert Dialog",
-        href: "/docs/primitives/alert-dialog",
-        description:
-            "A modal dialog that interrupts the user with important content and expects a response.",
+        title: "Dashboard",
+        href: "/dashboard",
     },
     {
-        title: "Hover Card",
-        href: "/docs/primitives/hover-card",
-        description:
-            "For sighted users to preview content available behind a link.",
-    },
-    {
-        title: "Progress",
-        href: "/docs/primitives/progress",
-        description:
-            "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-    },
-    {
-        title: "Scroll-area",
-        href: "/docs/primitives/scroll-area",
-        description: "Visually or semantically separates content.",
-    },
-    {
-        title: "Tabs",
-        href: "/docs/primitives/tabs",
-        description:
-            "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-    },
-    {
-        title: "Tooltip",
-        href: "/docs/primitives/tooltip",
-        description:
-            "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-    },
+        title: "Mes commandes",
+        href: "/orders",
+    }
 ]
 export default function Navbar() {
+    const [isOpen, setIsOpen] = useState(false);
+    const { isAuthenticated } = useAuth();
     return (
-        <div>
-            <NavigationMenu>
-                <NavigationMenuList>
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                                <li className="row-span-3">
-                                    <NavigationMenuLink asChild>
-                                        <a
-                                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                                            href="/"
-                                        >
-                                            {/* <Icons.logo className="h-6 w-6" /> */}
-                                            <div className="mb-2 mt-4 text-lg font-medium">
-                                                shadcn/ui
-                                            </div>
-                                            <p className="text-sm leading-tight text-muted-foreground">
-                                                Beautifully designed components built with Radix UI and
-                                                Tailwind CSS.
-                                            </p>
-                                        </a>
-                                    </NavigationMenuLink>
-                                </li>
-                                <ListItem href="/docs" title="Introduction">
-                                    Re-usable components built using Radix UI and Tailwind CSS.
-                                </ListItem>
-                                <ListItem href="/docs/installation" title="Installation">
-                                    How to install dependencies and structure your app.
-                                </ListItem>
-                                <ListItem href="/docs/primitives/typography" title="Typography">
-                                    Styles for headings, paragraphs, lists...etc
-                                </ListItem>
-                            </ul>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger>Components</NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                                {components.map((component) => (
-                                    <ListItem
-                                        key={component.title}
-                                        title={component.title}
-                                        href={component.href}
-                                    >
-                                        {component.description}
-                                    </ListItem>
-                                ))}
-                            </ul>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <Link href="/docs" legacyBehavior passHref>
-                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                Documentation
-                            </NavigationMenuLink>
+        <nav className="tw-border-b tw-bg-white tw-relative">
+            <div className="tw-max-w-7xl tw-mx-auto tw-px-4">
+                <div className="tw-flex tw-items-center tw-justify-between tw-h-16">
+
+                    <div className="tw-hidden md:tw-block tw-absolute tw-left-1/2 tw-transform -tw-translate-x-1/2">
+                        <Link href={"/"} className="tw-text-base tw-font-bold">
+                            BMG Massage
                         </Link>
-                    </NavigationMenuItem>
-                </NavigationMenuList>
-            </NavigationMenu>
-        </div>
+                    </div>
+
+                    <div className="md:tw-hidden">
+                        <Link href={"/"} className="tw-text-xl tw-font-bold">
+                            BMG Massage
+                        </Link>
+                    </div>
+
+                    <div className="md:tw-hidden">
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setIsOpen(!isOpen)}
+                            className="tw-p-2"
+                        >
+                            {isOpen ? <X className="tw-size-6" /> : <Menu className="tw-size-6" />}
+                        </Button>
+                    </div>
+
+                    <div className="tw-hidden md:tw-block tw-ml-auto">
+                        <NavigationMenu>
+                            <NavigationMenuList>
+                                <NavigationMenuItem>
+                                    <Link href={"/massages"} legacyBehavior passHref>
+                                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                            Nos massages
+                                        </NavigationMenuLink>
+                                    </Link>
+                                </NavigationMenuItem>
+                                {isAuthenticated ? (
+                                    <><NavigationMenuItem>
+                                        <Link href="/login" legacyBehavior passHref>
+                                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                                <User className="tw-mr-2 tw-size-4" />
+                                                Connexion
+                                            </NavigationMenuLink>
+                                        </Link>
+                                    </NavigationMenuItem><NavigationMenuItem>
+                                            <Link href="/register" legacyBehavior passHref>
+                                                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                                    S'inscrire
+                                                </NavigationMenuLink>
+                                            </Link>
+                                        </NavigationMenuItem></>
+                                ) : (
+                                    <><NavigationMenuItem>
+                                        <Link href="/" legacyBehavior passHref>
+                                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                                <ShoppingCart className="tw-mr-2 tw-size-4" />
+                                                Panier
+                                            </NavigationMenuLink>
+                                        </Link>
+                                    </NavigationMenuItem>
+                                        <NavigationMenuItem>
+                                            <NavigationMenuTrigger>
+                                                Avatar
+                                            </NavigationMenuTrigger>
+                                            <NavigationMenuContent>
+                                                <ul className="tw-grid w-[400px] tw-gap-3 tw-p-4 tw-md:w-[500px] tw-md:grid-cols-2 tw-lg:w-[600px]">
+                                                    {components.map((component) => (
+                                                        <ListItem
+                                                            key={component.title}
+                                                            title={component.title}
+                                                            href={component.href}
+                                                        >
+                                                        </ListItem>
+                                                    ))}
+                                                </ul>
+                                            </NavigationMenuContent>
+                                            <NavigationMenuItem>
+                                                <LogoutButton />
+                                            </NavigationMenuItem>
+                                        </NavigationMenuItem>
+                                    </>
+                                )}
+
+                            </NavigationMenuList>
+                        </NavigationMenu>
+                    </div>
+                </div>
+
+                {/* Menu mobile */}
+                {isOpen && (
+                    <div className="md:tw-hidden tw-py-2">
+                        <div className="tw-space-y-1">
+                            <Link
+                                href={"/massages"}
+                                className="tw-block tw-px-3 tw-py-2 tw-rounded-md tw-text-base tw-font-medium hover:tw-bg-gray-50"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                Nos massages
+                            </Link>
+                            <Link
+                                href={"/login"}
+                                className="tw-block tw-px-3 tw-py-2 tw-rounded-md tw-text-base tw-font-medium hover:tw-bg-gray-50"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                <div className="tw-flex tw-items-center">
+                                    <User className="tw-mr-2 tw-size-4" />
+                                    Connexion
+                                </div>
+                            </Link>
+                            <Link
+                                href={"/register"}
+                                className="tw-block tw-px-3 tw-py-2 tw-rounded-md tw-text-base tw-font-medium hover:tw-bg-gray-50"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                S'inscrire
+                            </Link>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </nav>
     )
+
 }
 
 const ListItem = React.forwardRef<
@@ -124,23 +163,21 @@ const ListItem = React.forwardRef<
     React.ComponentPropsWithoutRef<"a">
 >(({ className, title, children, ...props }, ref) => {
     return (
-        <li>
-            <NavigationMenuLink asChild>
-                <a
-                    ref={ref}
-                    className={cn(
-                        "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-                        className
-                    )}
-                    {...props}
-                >
-                    <div className="text-sm font-medium leading-none">{title}</div>
-                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                        {children}
-                    </p>
-                </a>
-            </NavigationMenuLink>
-        </li>
+        <NavigationMenuLink asChild >
+            <a
+                ref={ref}
+                className={cn(
+                    "tw-block tw-select-none tw-space-y-1 tw-rounded-md tw-p-3 tw-leading-none tw-no-underline tw-outline-none tw-transition-colors tw-hover:bg-accent tw-hover:text-accent-foreground tw-focus:bg-accent tw-focus:text-accent-foreground",
+                    className
+                )}
+                {...props}
+            >
+                <div className="tw-text-sm tw-font-medium tw-leading-none">{title}</div>
+                <p className="tw-line-clamp-2 tw-text-sm tw-leading-snug tw-text-muted-foreground">
+                    {children}
+                </p>
+            </a>
+        </NavigationMenuLink>
     )
 })
 ListItem.displayName = "ListItem"

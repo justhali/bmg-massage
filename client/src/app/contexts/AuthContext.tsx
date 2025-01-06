@@ -6,7 +6,6 @@ import { createContext, useContext, useState } from 'react';
 interface AuthContextType {
     isAuthenticated: User | null;
     token: string;
-    // isLoading: boolean;
     login: (credentials: LoginCredentials) => Promise<void>;
     logout: () => void;
 }
@@ -16,7 +15,6 @@ export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
-    // const [isLoading, setIsLoading] = useState(false);
     const [token, setToken] = useState<string>("");
 
     const login = async (credentials: LoginCredentials) => {
@@ -40,6 +38,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     const logout = () => {
         localStorage.removeItem('token');
+        setToken("")
         setUser(null);
     };
 

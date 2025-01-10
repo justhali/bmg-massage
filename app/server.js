@@ -5,6 +5,7 @@ const syncDatabase = require('./config/syncDatabase');
 const massageRoutes = require('./routes/massages')
 const bookingRoutes = require('./routes/bookings')
 const usersRoutes = require('./routes/users')
+const paymentsRoutes = require('./routes/payments')
 const app = express();
 
 const port = process.env.PORT || 3001;
@@ -23,6 +24,7 @@ syncDatabase();
 app.use('/', massageRoutes);
 app.use('/', bookingRoutes);
 app.use('/', usersRoutes);
+app.use('/', paymentsRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on port http://localhost:${port}`)

@@ -11,10 +11,12 @@ export default function RootLayout({
 }) {
     return (
         <html lang="fr">
-            <body>
+            <body className=" tw-flex tw-flex-col">
                 <AuthProvider>
                     <Navbar />
-                    {children}
+                    <div className="tw-container tw-flex-grow">
+                        {children}
+                    </div>
                     <Footer />
                 </AuthProvider>
             </body>

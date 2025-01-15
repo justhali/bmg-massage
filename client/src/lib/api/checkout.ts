@@ -1,23 +1,23 @@
+"use server"
 import axios from "axios";
-import { SumupCheckout } from "../types/index";
 
-const SUMUP_URL = process.env.SUMUP_API_URL;
-const SUMUP_API_KEY = process.env.SUMUP_API_KEY;
 
-export const createCheckout = async (amount: number, checkoutReference: string): Promise<SumupCheckout> => {
+const URL = process.env.SUMUP_API_URL;
+const API_KEY = process.env.SUMUP_API_KEY;
+
+export const createCheckout = async (amount: number, checkout_reference: string) => {
     try {
         const response = await axios.post(
-            `${SUMUP_URL}/checkouts`,
+            `${URL}/checkouts`,
             {
-                checkout_reference: checkoutReference,
+                checkout_reference: checkout_reference,
                 amount,
                 currency: "EUR",
                 pay_to_email: "just.hvli@gmail.com",
-                redirect_url: SUMUP_REDIRECT_URL,
             },
             {
                 headers: {
-                    Authorization: `Bearer ${SUMUP_API_KEY}`,
+                    Authorization: `Bearer ${API_KEY}`,
                 },
             }
         );
@@ -29,10 +29,17 @@ export const createCheckout = async (amount: number, checkoutReference: string):
 }
 
 
-export const completeCheckout = async (id: number): Promise<SumupCheckout | null> => {
+export const completeCheckout = async (id: string) => {
     try {
-
-        const response = await axios.put(`${SUMUP_URL}/checkouts/${id}`);
+        const response = await axios.put(
+            `${URL}/checkouts/${id}`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${API_KEY}`,
+                },
+            }
+        );
         return response.data;
     } catch (error) {
         console.error(`Erreur de récupération du massage ${id}`, error);

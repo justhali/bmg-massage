@@ -1,10 +1,9 @@
 "use client"
 import { Button } from '@/src/components/ui/button';
-import { useAuth } from '@/src/app/contexts/AuthContext';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-
+import { createCheckout } from '@/src/lib/api/checkout';
+import randomstring from 'randomstring';
+import Link from 'next/link';
 
 interface MassageDetailProps {
     id: number;
@@ -22,33 +21,14 @@ export default function MassageDetail({
     duration,
 }: MassageDetailProps) {
 
-
-    const handlePayment = async (id: number) => {
-        // try {
-        //     // Appel à votre API pour créer une session de paiement SumUp
-        //     const response = await fetch('/create-payment', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //         body: JSON.stringify({
-        //             massageId,
-        //             userId: user.id
-        //         }),
-        //     });
-
-        //     if (!response.ok) {
-        //         throw new Error('Erreur lors de la création du paiement');
-        //     }
-
-        //     const { paymentUrl } = await response.json();
-
-        //     // Redirection vers la page de paiement SumUp
-        //     window.location.href = paymentUrl;
-        // } catch (error) {
-        //     console.error('Erreur de paiement:', error);
-        //     // Gérer l'erreur (afficher un message à l'utilisateur)
-        // }
+    const checkoutReference = randomstring.generate();
+    const createNewCheckout = async () => {
+        try {
+            const response = await createCheckout(price, checkoutReference);
+            console.log(response);
+        } catch (error) {
+            console.error('Erreur lors du checkout:', error);
+        }
     };
     return (
         <div className="max-w-6xl mx-auto p-8 bg-white rounded-lg shadow-md border border-gray-200">
@@ -78,11 +58,12 @@ export default function MassageDetail({
                         </div>
                         <div className="text-lg text-gray-800 font-semibold mb-6">Durée : {duration}</div>
                     </div>
-
-                    <Button className="w-full">
-                        Payer {price.toFixed(2)} €
-                    </Button>
-
+                    <Link href={`/checkout`}>
+                        <Button className="w-full" onClick={createNewCheckout}>
+                            Réserver
+                        </Button>
+                    </Link>
+                    <div id='sumup-card'></div>
                 </div>
             </div>
         </div>
